@@ -39,5 +39,12 @@ jobs:
           name: download-file
           path: downloads/*.exe
 
+      - name: Upload a Build Artifact
+        run: mvn allure:report allure:serve
+        if: always()
+        uses: actions/upload-artifact@v2-preview
+        with:
+         name: allure-report
+         path: allure-report
 
 
