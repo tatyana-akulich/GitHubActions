@@ -44,8 +44,8 @@ public class BaseTest {
         playwright = Playwright.create();
         BrowserType browserType = null;
         String browserName = "chrome";
-        if (System.getenv("browserName")!= null) {
-            browserName = System.getenv("browserName");
+        if (System.getProperty("browserName")!= null) {
+            browserName = System.getProperty("browserName");
         }
         switch (browserName) {
             case "chrome": {
@@ -64,6 +64,7 @@ public class BaseTest {
                 browserType = playwright.chromium();
             }
         }
+        System.out.println(browserName);
         browser = browserType.launch(new BrowserType.LaunchOptions()
                 .setHeadless(PropertiesLoader.isHeadless()).setSlowMo(50));
     }
