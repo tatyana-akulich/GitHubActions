@@ -21,8 +21,22 @@ jobs:
       - name: Run tests
         run: mvn test
       - name: Archive code coverage results
+        if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
          name: log-file
-         path: steamlogs/
-         
+         path: steamlogs/*.log
+      - name: Archive code coverage results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: download-file
+          path: downloads/*.exe
+      - name: Archive code coverage results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: log-file
+          path: steamlogs/*.log
+
+
