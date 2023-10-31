@@ -44,7 +44,7 @@ public class BaseTest {
         playwright = Playwright.create();
         BrowserType browserType = null;
         String browserName = "chrome";
-        if (System.getenv("browserName")== null) {
+        if (System.getenv("browserName")!= null) {
             browserName = System.getenv("browserName");
         }
         switch (browserName) {
