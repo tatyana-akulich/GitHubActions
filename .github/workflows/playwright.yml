@@ -20,3 +20,9 @@ jobs:
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
         run: mvn test
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+         name: log-file
+         path: steamlogs/
+         
