@@ -55,5 +55,5 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: allure ${{ inputs.browserName }}
+          name: allure-${{ inputs.browserName }}
           path: target/site
