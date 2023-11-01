@@ -48,4 +48,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: allure html
-          path: target/site/allure-maven-plugin/index.html
+          path: target/site/allure-maven-plugin
