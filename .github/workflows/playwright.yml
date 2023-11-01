@@ -25,7 +25,7 @@ jobs:
         run: mvn -B install -D skipTests --no-transfer-progress
 
       - name: Run tests
-        run: HOME=/root mvn test -DbrowserName=${{ inputs.browserName }}
+        run: HOME=/root mvn test
 
       - name: Generate allure report
         run: mvn allure:report
@@ -55,5 +55,5 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: allure-${{ inputs.browserName }}
+          name: allure-${{ matrix.browserName }}
           path: target/site
