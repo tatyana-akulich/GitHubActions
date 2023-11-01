@@ -31,7 +31,5 @@ jobs:
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
-        uses: docker://mcr.microsoft.com/playwright:v1.34.3-jammy
-        with:
-         args: HOME=/root mvn test -DbrowserName=${{ inputs.browserName }}
+        run: HOME=/root mvn test -DbrowserName=${{ inputs.browserName }}
         
