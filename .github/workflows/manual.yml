@@ -32,4 +32,4 @@ jobs:
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
         run: HOME=/root mvn test -DbrowserName=${{ inputs.browserName }}
-        
+      
