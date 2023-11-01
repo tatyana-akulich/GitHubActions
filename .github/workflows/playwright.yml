@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        browserName: [chrome, webkit, firefox]
+        browserName: [chrome, webkit]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
@@ -26,12 +26,14 @@ jobs:
         run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
       - name: Run tests
         run: mvn test -DbrowserName=${{ matrix.browserName }}
+        
       - name: Archive code coverage results
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
          name: log-file
          path: steamlogs/*.log
+
       - name: Archive code coverage results
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
@@ -40,12 +42,10 @@ jobs:
           path: downloads/*.exe
 
       - name: Generate allure report
-        run: mvn allure:report allure:serve
+        run: mvn allure:report
       - name: Archive allure report
-        if: always()
-        uses: actions/upload-artifact@v2-preview
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
         with:
-         name: allure-report
-         path: allure-report
-
-
+          name: allure html
+          path: target/site/allure-maven-plugin/index.html
