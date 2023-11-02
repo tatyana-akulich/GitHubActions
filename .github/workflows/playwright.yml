@@ -34,21 +34,21 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-         name: steamlog-file
+         name: steamlog-file-${{ matrix.browserName }}
          path: steamlogs/*.log
 
       - name: Archive code coverage results
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: log-file
+          name: log-file-${{ matrix.browserName }}
           path: logs/*.log
 
       - name: Archive code coverage results
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: download-file
+          name: download-file-${{ matrix.browserName }}
           path: downloads/*.exe
 
       - name: Archive allure report
@@ -56,4 +56,6 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: allure-${{ matrix.browserName }}
-          path: target/site
+          path: |
+           target/site
+           allure-results

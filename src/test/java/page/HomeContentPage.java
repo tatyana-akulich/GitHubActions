@@ -62,11 +62,13 @@ public class HomeContentPage extends BasePage {
     public void openSteamByDiscount(String discountForLocator) {
         log.info("Open first steam with maximum discount - {}", discountForLocator);
         page.locator(String.format(titleByDiscountLink, discountForLocator)).nth(0).click();
+        log.info("page url is {}", page.url());
     }
 
     public void openSteamByPrice(String priceForLocator) {
         log.info("Open first steam with maximum price - {}, if there are no discounts", priceForLocator);
         page.locator(String.format(titleByPriceLink, priceForLocator)).nth(0).click();
+        log.info("page url is {}", page.url());
     }
 
     public void clickAllItems(){

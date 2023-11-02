@@ -30,6 +30,7 @@ public class HomePage extends BasePage {
     public HomePage clickCategory(String category) {
         log.info("Open category {}", category);
         page.locator(String.format(categoryMenuItem, category)).click();
+        log.info("page url is {}", page.url());
         return this;
     }
 

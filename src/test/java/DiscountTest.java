@@ -44,12 +44,14 @@ public class DiscountTest extends BaseTest {
         log.warn("Wait till block with steams in All Items is loaded: amount of steams is positive");
         mainPage.waitForCondition(() -> (contentPage.getSteamsWithPriceLocator().count() > 0));
         List<String> pricesInAllItemsSection = contentPage.getSteamsWithPrice();
+        log.info("page url is {}", mainPage.url());
 
         contentPage.clickNewAndTrending();
         log.warn("Wait till block with steams in New & Trending is loaded: " +
                 "amount of steams is positive and steams diverse from the ones in All items");
         mainPage.waitForCondition(() -> (contentPage.getSteamsWithPriceLocator().count() > 0)
                 & !(contentPage.getSteamsWithPrice().equals(pricesInAllItemsSection)));
+        log.info("page url is {}", mainPage.url());
         List<String> discounts = contentPage.getSteamsWithDiscounts();
         if (discounts.size() > 0) {
             log.info("Case when there are discounts on the page");
