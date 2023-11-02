@@ -58,6 +58,7 @@ jobs:
         with:
           name: download-file-${{ inputs.browserName }}
           path: downloads/*.exe
+          if-no-files-found: ignore
 
       - name: Archive allure report
         if: ${{ always() }}
@@ -67,5 +68,6 @@ jobs:
           path: |
             target/site
             target/allure-results
+          if-no-files-found: ignore
 
       
