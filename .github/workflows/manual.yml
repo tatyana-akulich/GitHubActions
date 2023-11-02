@@ -42,6 +42,7 @@ jobs:
         with:
          name: steamlog-file-${{ inputs.browserName }}
          path: steamlogs/*.log
+         if-no-files-found: ignore
 
       - name: Archive code coverage results
         if: ${{ always() }}
@@ -49,6 +50,7 @@ jobs:
         with:
           name: log-file-${{ inputs.browserName }}
           path: logs/*.log
+          if-no-files-found: ignore
 
       - name: Archive code coverage results
         if: ${{ always() }}
