@@ -31,7 +31,7 @@ public class HomeContentPage extends BasePage {
                 "//div[@class=\"salepreviewwidgets_StoreSaleDiscountBox_2fpFv\"]");
         this.priceText = page.locator("//div[@class=\"facetedbrowse_FacetedBrowseItems_NO-IP\"]" +
                 "//div[@class=\"salepreviewwidgets_StoreSalePriceBox_Wh0L8\"]");
-        this.allItemsMenuItem =page.locator("//div[text()=\"All Items\"]");
+        this.allItemsMenuItem = page.locator("//div[text()=\"All Items\"]");
         this.dateText = page.locator(".facetedbrowse_FacetedBrowseItems_NO-IP .salepreviewwidgets_StoreSaleWidgetRelease_3eOdk");
     }
 
@@ -50,7 +50,7 @@ public class HomeContentPage extends BasePage {
         return priceText.allTextContents();
     }
 
-    public Locator getSteamsWithPriceLocator(){
+    public Locator getSteamsWithPriceLocator() {
         return priceText;
     }
 
@@ -62,16 +62,14 @@ public class HomeContentPage extends BasePage {
     public void openSteamByDiscount(String discountForLocator) {
         log.info("Open first steam with maximum discount - {}", discountForLocator);
         page.locator(String.format(titleByDiscountLink, discountForLocator)).nth(0).click();
-        log.info("page url is {}", page.url());
     }
 
     public void openSteamByPrice(String priceForLocator) {
         log.info("Open first steam with maximum price - {}, if there are no discounts", priceForLocator);
         page.locator(String.format(titleByPriceLink, priceForLocator)).nth(0).click();
-        log.info("page url is {}", page.url());
     }
 
-    public void clickAllItems(){
+    public void clickAllItems() {
         log.debug("Choose All items section");
         allItemsMenuItem.click();
     }

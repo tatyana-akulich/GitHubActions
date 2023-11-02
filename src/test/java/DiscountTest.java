@@ -111,6 +111,7 @@ public class DiscountTest extends BaseTest {
         steam = context.waitForPage(() -> {
             contentPage.openSteamByDiscount(maxDiscountOnContentPage);
         });
+        log.info("page url is {}", steam.url());
     }
 
     public void openSteamWithMaxPrice() {
@@ -118,6 +119,7 @@ public class DiscountTest extends BaseTest {
         steam = context.waitForPage(() -> {
             contentPage.openSteamByPrice(priceOnContentPage);
         });
+        log.info("page url is {}", steam.url());
     }
 }
 
