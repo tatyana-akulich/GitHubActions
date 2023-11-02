@@ -32,4 +32,37 @@ jobs:
         run: mvn -B install -D skipTests --no-transfer-progress
       - name: Run tests
         run: HOME=/root mvn test -DbrowserName=${{ inputs.browserName }}
+        
+      - name: Generate allure report
+        run: mvn allure:report
+
+      - name: Archive code coverage results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+         name: steamlog-file-${{ inputs.browserName }}
+         path: steamlogs/*.log
+
+      - name: Archive code coverage results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: log-file-${{ inputs.browserName }}
+          path: logs/*.log
+
+      - name: Archive code coverage results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: download-file-${{ inputs.browserName }}
+          path: downloads/*.exe
+
+      - name: Archive allure report
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-${{ inputs.browserName }}
+          path: target/site
+                allure-results
+
       
