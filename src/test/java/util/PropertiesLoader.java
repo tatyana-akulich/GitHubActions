@@ -15,7 +15,7 @@ public class PropertiesLoader {
     static boolean logFilePreserve;
 
     public static String getBrowserName() {
-        return browserName;
+        return System.getProperty("browserName") == null ? browserName : System.getProperty("browserName");
     }
 
     public static boolean isHeadless() {
@@ -50,6 +50,7 @@ public class PropertiesLoader {
         Properties properties = new Properties();
         try (InputStream inputStream = PropertiesLoader.class.getClassLoader().getResourceAsStream("configuration.properties")) {
             properties.load(inputStream);
+            browserName = properties.getProperty("browser.name");
             headless = Boolean.parseBoolean(properties.getProperty("browser.headless"));
             folderForDownloadFiles = properties.getProperty("download.dir");
             logLevel = properties.getProperty("log.level");

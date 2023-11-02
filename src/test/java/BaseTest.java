@@ -43,10 +43,7 @@ public class BaseTest {
     void launchBrowser() {
         playwright = Playwright.create();
         BrowserType browserType = null;
-        String browserName = "chrome";
-        if (System.getProperty("browserName") != null) {
-            browserName = System.getProperty("browserName");
-        }
+        String browserName = PropertiesLoader.getBrowserName();
         switch (browserName) {
             case "chrome": {
                 browserType = playwright.chromium();
