@@ -57,5 +57,5 @@ jobs:
         with:
           name: allure-${{ matrix.browserName }}
           path: |
-           target/site
-           allure-results
+            target/site
+            target/allure-results
