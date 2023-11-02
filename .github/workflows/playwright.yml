@@ -36,6 +36,7 @@ jobs:
         with:
          name: steamlog-file-${{ matrix.browserName }}
          path: steamlogs/*.log
+         if-no-files-found: ignore
 
       - name: Archive code coverage results
         if: ${{ always() }}
@@ -43,6 +44,7 @@ jobs:
         with:
           name: log-file-${{ matrix.browserName }}
           path: logs/*.log
+          if-no-files-found: ignore
 
       - name: Archive code coverage results
         if: ${{ always() }}
@@ -50,6 +52,7 @@ jobs:
         with:
           name: download-file-${{ matrix.browserName }}
           path: downloads/*.exe
+          if-no-files-found: ignore
 
       - name: Archive allure report
         if: ${{ always() }}
@@ -59,3 +62,4 @@ jobs:
           path: |
             target/site
             target/allure-results
+            if-no-files-found: ignore
