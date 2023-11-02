@@ -62,8 +62,8 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: allure-${{ inputs.browserName }}
-          path: target/
-                site
-                allure-results
+          path: |
+            target/site
+            target/allure-results
 
       
