@@ -28,6 +28,7 @@ jobs:
         run: HOME=/root mvn test
 
       - name: Generate allure report
+        if: ${{ always() }}
         run: mvn allure:report
 
       - name: Archive code coverage results
