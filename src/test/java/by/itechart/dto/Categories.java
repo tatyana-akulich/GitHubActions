@@ -1,4 +1,4 @@
-package dto;
+package by.itechart.dto;
 
 public enum Categories {
     Horror ("Horror"),

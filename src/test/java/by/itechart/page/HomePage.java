@@ -1,4 +1,4 @@
-package page;
+package by.itechart.page;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
     }
 
     public HomePage open() {
-        log.info("Open home page");
+        log.info("Open home .page");
         page.navigate("https://store.steampowered.com/");
         return this;
     }
@@ -30,7 +30,7 @@ public class HomePage extends BasePage {
     public HomePage clickCategory(String category) {
         log.info("Open category {}", category);
         page.locator(String.format(categoryMenuItem, category)).click();
-        log.info("page url is {}", page.url());
+        log.info("Page url is {}", page.url());
         return this;
     }
 

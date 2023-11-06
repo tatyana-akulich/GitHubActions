@@ -1,10 +1,15 @@
+package by.itechart;
+
+import by.itechart.dto.Categories;
+import by.itechart.page.*;
+import by.itechart.util.PropertiesLoader;
+import by.itechart.util.TestResultLoggerExtension;
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
-import dto.Categories;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
-import page.*;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.File;
 import java.nio.file.Paths;
@@ -12,10 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import util.PropertiesLoader;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DiscountTest extends BaseTest {
@@ -32,8 +35,9 @@ public class DiscountTest extends BaseTest {
     String maxDiscountOnContentPage;
 
     @Test
+    @ExtendWith(TestResultLoggerExtension.class)
     public void testInstallSteamWithDiscount() {
-        log.info("Start DiscountTest");
+        log.info("DiscountTest");
         homePage = new HomePage(mainPage);
         contentPage = new HomeContentPage(mainPage);
         homePage.open().clickCategoriesMenuItem();
@@ -44,14 +48,14 @@ public class DiscountTest extends BaseTest {
         log.warn("Wait till block with steams in All Items is loaded: amount of steams is positive");
         mainPage.waitForCondition(() -> (contentPage.getSteamsWithPriceLocator().count() > 0));
         List<String> pricesInAllItemsSection = contentPage.getSteamsWithPrice();
-        log.info("page url is {}", mainPage.url());
+        log.info("Page url is {}", mainPage.url());
 
         contentPage.clickNewAndTrending();
         log.warn("Wait till block with steams in New & Trending is loaded: " +
                 "amount of steams is positive and steams diverse from the ones in All items");
         mainPage.waitForCondition(() -> (contentPage.getSteamsWithPriceLocator().count() > 0)
                 & !(contentPage.getSteamsWithPrice().equals(pricesInAllItemsSection)));
-        log.info("page url is {}", mainPage.url());
+        log.info("Page url is {}", mainPage.url());
         List<String> discounts = contentPage.getSteamsWithDiscounts();
         if (discounts.size() > 0) {
             log.info("Case when there are discounts on the page");
@@ -61,7 +65,7 @@ public class DiscountTest extends BaseTest {
             priceOnContentPage = contentPage.getFirstPriceWithMaxDiscount(maxDiscountOnContentPage);
             openSteamWithMaxDiscount();
         } else {
-            log.info("Case when there are no discounts on the page");
+            log.info("Case when there are no discounts on the .page");
             maxPrice = contentPage.getMaxPrice();
             log.debug("Format price to the variant on content page: $price .02f");
             priceOnContentPage = "$" + String.format(Locale.US, "%.02f", maxPrice);
@@ -85,7 +89,7 @@ public class DiscountTest extends BaseTest {
         assertThat(detailsPage.getAllPrices()).contains(priceOnContentPage);
 
         downloadSteam();
-        log.info("Finish DiscountTest");
+        log.info("Finish .DiscountTest");
     }
 
     public void downloadSteam() {
@@ -111,7 +115,7 @@ public class DiscountTest extends BaseTest {
         steam = context.waitForPage(() -> {
             contentPage.openSteamByDiscount(maxDiscountOnContentPage);
         });
-        log.info("page url is {}", steam.url());
+        log.info("Page url is {}", steam.url());
     }
 
     public void openSteamWithMaxPrice() {
@@ -119,7 +123,9 @@ public class DiscountTest extends BaseTest {
         steam = context.waitForPage(() -> {
             contentPage.openSteamByPrice(priceOnContentPage);
         });
-        log.info("page url is {}", steam.url());
+        log.info("Page url is {}", steam.url());
     }
+
+
 }
 

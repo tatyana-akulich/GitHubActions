@@ -1,4 +1,4 @@
-package page;
+package by.itechart.page;
 
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;

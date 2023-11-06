@@ -1,4 +1,4 @@
-package util;
+package by.itechart.util;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -13,9 +13,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class LogConfigurator {
+    static String logFileName;
+
+    public static String getLogFileName() {
+        return logFileName;
+    }
+
     public static void configureLogs(){
         boolean logFileEnable = PropertiesLoader.isLogFileEnable();
-        String logFileName = PropertiesLoader.getLogFileName();
+        logFileName = PropertiesLoader.getLogFileName();
         String logLevel = PropertiesLoader.getLogLevel();
 
         LoggerContext contextLogger = (LoggerContext) LogManager.getContext(false);

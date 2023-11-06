@@ -1,3 +1,5 @@
+package by.itechart;
+
 import com.microsoft.playwright.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -5,8 +7,10 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import util.LogConfigurator;
-import util.PropertiesLoader;
+import by.itechart.util.LogConfigurator;
+import by.itechart.util.PropertiesLoader;
+
+import java.nio.file.Paths;
 
 public class BaseTest {
     static Playwright playwright;
@@ -32,11 +36,20 @@ public class BaseTest {
     @BeforeEach
     void createContextAndPage() {
         context = browser.newContext(new Browser.NewContextOptions().setLocale("en-GB"));
+        context.tracing().start(new Tracing.StartOptions()
+                .setScreenshots(true)
+                .setSnapshots(true)
+                .setSources(true));
         mainPage = context.newPage();
     }
 
     @AfterEach
     void closeContext() {
+        context.pages().get(context.pages().size() - 1).screenshot(new Page.ScreenshotOptions()
+                .setPath(Paths.get("final_screenshot.png"))
+                .setFullPage(true));
+        context.tracing().stop(new Tracing.StopOptions()
+                .setPath(Paths.get("trace.zip")));
         context.close();
     }
 
