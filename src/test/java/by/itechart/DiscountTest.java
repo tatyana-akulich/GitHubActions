@@ -86,7 +86,7 @@ public class DiscountTest extends BaseTest {
             assertThat(detailsPage.getAllDiscountsLocator().allTextContents()).contains(maxDiscountOnContentPage);
         }
         log.info("Assert: details page contains max price from content page");
-        assertThat(detailsPage.getAllPrices()).contains(priceOnContentPage);
+        assertThat(detailsPage.getAllPrices()).contains(priceOnContentPage + " USD");
 
         downloadSteam();
         log.info("Finish .DiscountTest");
