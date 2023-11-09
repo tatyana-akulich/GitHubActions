@@ -4,6 +4,10 @@ on:
     branches: [ "main", "master" ]
   pull_request:
     branches: [ "main", "master" ]
+
+env:
+-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+
 jobs:
   playwright:
     name: 'Playwright Tests'
@@ -22,11 +26,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install latest stable Rust toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-            profile: minimal
-            toolchain: stable
 
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
@@ -110,3 +109,5 @@ jobs:
           state: 'success'
           sha: ${{ github.event.pull_request.head.sha || github.sha}}
           target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }}
+
+
