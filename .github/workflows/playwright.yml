@@ -16,7 +16,7 @@ jobs:
       matrix:
         browserName: [chrome, firefox, webkit]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
@@ -65,10 +65,10 @@ jobs:
             target/allure-results
             if-no-files-found: ignore
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Get Allure history
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         if: always()
         continue-on-error: true
         with:
@@ -103,3 +103,7 @@ jobs:
           state: 'success'
           sha: ${{ github.event.pull_request.head.sha || github.sha}}
           target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }}
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
