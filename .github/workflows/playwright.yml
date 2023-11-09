@@ -16,11 +16,18 @@ jobs:
       matrix:
         browserName: [chrome, firefox, webkit]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '17'
+
+      - name: Install latest stable Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+            profile: minimal
+            toolchain: stable
+
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
 
@@ -65,10 +72,10 @@ jobs:
             target/allure-results
             if-no-files-found: ignore
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: Get Allure history
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
         if: always()
         continue-on-error: true
         with:
@@ -103,7 +110,3 @@ jobs:
           state: 'success'
           sha: ${{ github.event.pull_request.head.sha || github.sha}}
           target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }}
-
-      - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v4
-        if: always()
