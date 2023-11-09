@@ -37,7 +37,7 @@ public class DiscountTest extends BaseTest {
     @Test
     @ExtendWith(TestResultLoggerExtension.class)
     public void testInstallSteamWithDiscount() {
-        log.info("DiscountTest");
+        log.info("Start DiscountTest");
         homePage = new HomePage(mainPage);
         contentPage = new HomeContentPage(mainPage);
         homePage.open().clickCategoriesMenuItem();
@@ -89,7 +89,7 @@ public class DiscountTest extends BaseTest {
         assertThat(detailsPage.getAllPrices()).contains(priceOnContentPage);
 
         downloadSteam();
-        log.info("Finish .DiscountTest");
+        log.info("Finish DiscountTest");
     }
 
     public void downloadSteam() {
