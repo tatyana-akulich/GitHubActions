@@ -68,6 +68,24 @@ jobs:
             target/site
             target/allure-results
             if-no-files-found: ignore
+            
+
+  deploy:
+    needs: playwright
+    name: 'Github Pages'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'    
 
       - name: Get Allure history
         uses: actions/checkout@v3
@@ -86,23 +104,6 @@ jobs:
           allure_report: target/site/allure-maven-plugin
           allure_history: allure-history
           keep_reports: 10
-
-  deploy:
-    needs: playwright
-    name: 'Github Pages'
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-      
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'    
 
       - name: Deploy report to Github Pages
         if: always()
