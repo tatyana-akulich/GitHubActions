@@ -48,7 +48,7 @@ jobs:
           allure_results: target/allure-results
           gh_pages: gh-pages
           allure_report: target/site/allure-maven-plugin
-          allure_history: target/site/allure-maven-plugin/history
+          allure_history: allure-history
           keep_reports: 10
 
       - name: Deploy report to Github Pages
