@@ -31,6 +31,8 @@ jobs:
         run: HOME=/root mvn test
 
       - name: Generate allure report
+        if: always()
+        continue-on-error: true
         run: mvn allure:report
 
       - name: Get Allure history
