@@ -13,7 +13,6 @@ target/
 *.ipr
 .idea
 .allure
-allure-results/
 downloads/
 steamlogs/
 logs/
