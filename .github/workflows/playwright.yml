@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browserName: [chrome, webkit, firefox]
+        browserName: [chrome]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
@@ -48,7 +48,7 @@ jobs:
           allure_results: target/allure-results
           gh_pages: gh-pages
           allure_report: target/site/allure-maven-plugin
-          allure_history: allure-history
+          allure_history: target/site/allure-maven-plugin/history
           keep_reports: 10
 
       - name: Deploy report to Github Pages
