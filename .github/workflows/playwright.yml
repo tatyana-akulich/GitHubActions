@@ -88,6 +88,7 @@ jobs:
           keep_reports: 10
 
   deploy:
+    needs: playwright
     name: 'Github Pages'
     runs-on: ubuntu-latest
     container:
