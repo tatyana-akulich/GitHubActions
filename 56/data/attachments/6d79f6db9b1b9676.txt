@@ -1,0 +1,6 @@
+2023-11-10 08:40:52,877 [INFO ] Start DiscountTest 
+2023-11-10 08:40:52,896 [INFO ] Open home .page 
+2023-11-10 08:40:54,662 [INFO ] Hover on Categories 
+2023-11-10 08:40:54,816 [INFO ] Click on necessary category and wait till content part load 
+2023-11-10 08:40:54,818 [INFO ] Open category Action 
+2023-11-10 08:40:56,004 [INFO ] Page url is https://store.steampowered.com/category/action/?snr=1_4_4__12 

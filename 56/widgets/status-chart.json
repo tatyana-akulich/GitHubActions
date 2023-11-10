@@ -1,1 +1,1 @@
-[{"uid":"d5fa22eaaab6d2c1","name":"testInstallSteamWithDiscount()","time":{"start":1699605646875,"stop":1699605662388,"duration":15513},"status":"passed","severity":"normal"}]
+[{"uid":"f6a46e8eba46ca09","name":"testInstallSteamWithDiscount()","time":{"start":1699605652770,"stop":1699605689804,"duration":37034},"status":"broken","severity":"normal"}]
