@@ -68,25 +68,7 @@ jobs:
             target/site
             target/allure-results
             if-no-files-found: ignore
-            
-
-  deploy:
-    needs: playwright
-    name: 'Github Pages'
-    runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-      
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'    
-
+    
       - name: Get Allure history
         uses: actions/checkout@v3
         if: always()
@@ -107,7 +89,7 @@ jobs:
 
       - name: Deploy report to Github Pages
         if: always()
-        uses: peaceiris/actions-gh-pages@v2
+        uses: peaceiris/actions-gh-pages@v3
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
