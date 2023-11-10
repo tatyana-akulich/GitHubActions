@@ -45,9 +45,9 @@ jobs:
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
-          allure_results: target/site/allure-maven-plugin
+          allure_results: target/allure-results
           gh_pages: gh-pages
-          allure_report: allure-report
+          allure_report: target/site/allure-maven-plugin
           allure_history: allure-history
           keep_reports: 10
 
