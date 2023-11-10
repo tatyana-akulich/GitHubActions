@@ -16,6 +16,7 @@ target/
 downloads/
 steamlogs/
 logs/
+allure-results/
 
 ### Eclipse ###
 .apt_generated
