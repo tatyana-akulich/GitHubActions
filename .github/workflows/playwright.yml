@@ -15,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        browserName: [chrome]
+        browserName: [chrome, firefox, webkit]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
@@ -29,46 +29,6 @@ jobs:
 
       - name: Run tests
         run: HOME=/root mvn test
-
-      - name: Generate allure report
-        if: ${{ always() }}
-        run: mvn allure:report
-
-      - name: Archive code coverage results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: steamlog-file-${{ matrix.browserName }}
-          path: steamlogs/*.log
-          if-no-files-found: ignore
-
-      - name: Archive code coverage results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: log-file-${{ matrix.browserName }}
-          path: logs/*.log
-          if-no-files-found: ignore
-
-      - name: Archive code coverage results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: download-file-${{ matrix.browserName }}
-          path: downloads/*.exe
-          if-no-files-found: ignore
-
-      - name: Archive allure report
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: allure-${{ matrix.browserName }}
-          path: |
-            target/site
-            target/allure-results
-            if-no-files-found: ignore
-
-      - uses: actions/checkout@v3
 
       - name: Get Allure history
         uses: actions/checkout@v3
@@ -106,5 +66,3 @@ jobs:
           state: 'success'
           sha: ${{ github.event.pull_request.head.sha || github.sha}}
           target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }}
-
-
