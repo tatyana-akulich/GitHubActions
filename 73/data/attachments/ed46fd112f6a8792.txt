@@ -1,7 +1,0 @@
-2023-11-12 07:19:56,786 [INFO ] Start DiscountTest 
-2023-11-12 07:19:56,807 [INFO ] Open home .page 
-2023-11-12 07:19:57,944 [INFO ] Hover on Categories 
-2023-11-12 07:19:58,114 [INFO ] Click on necessary category and wait till content part load 
-2023-11-12 07:19:58,116 [INFO ] Open category Action 
-2023-11-12 07:19:59,578 [INFO ] Page url is https://store.steampowered.com/category/action/?snr=1_4_4__12 
-2023-11-12 07:20:01,121 [WARN ] Wait till block with steams in All Items is loaded: amount of steams is positive 
