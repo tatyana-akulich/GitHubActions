@@ -78,7 +78,6 @@ jobs:
           path: gh-pages
     
       - name: Allure Report action from marketplace
-        id: report-webkit
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
@@ -89,7 +88,7 @@ jobs:
           keep_reports: 10
 
       - name: Deploy report to Github Pages
-        if: ${{ matrix.browserName }}==webkit
+        if: matrix.browserName=='webkit'
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
