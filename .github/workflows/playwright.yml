@@ -78,17 +78,18 @@ jobs:
           path: gh-pages
     
       - name: Allure Report action from marketplace
+        id: ${{ matrix.browserName }}
         uses: simple-elf/allure-report-action@master
         if: always()
         with:
-          allure_results: allure-results
+          allure_results: target/allure-results
           gh_pages: gh-pages
           allure_report: target/site/allure-maven-plugin
           allure_history: allure-history
           keep_reports: 10
 
       - name: Deploy report to Github Pages
-        if: always()
+        if: ${{ success () && steps.chrome.conclusion == 'success' && steps.firefox.conclusion == 'success' && steps.webkit.conclusion == 'success'}}
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
