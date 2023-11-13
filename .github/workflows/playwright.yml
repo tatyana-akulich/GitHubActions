@@ -88,7 +88,6 @@ jobs:
           keep_reports: 10
 
       - name: Deploy report to Github Pages
-        if: matrix.browserName=='webkit'
         uses: peaceiris/actions-gh-pages@v2
         env:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
