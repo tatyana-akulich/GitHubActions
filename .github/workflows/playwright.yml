@@ -76,7 +76,7 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages
-
+    
       - name: Allure Report action from marketplace
         uses: simple-elf/allure-report-action@master
         if: always()
@@ -94,7 +94,8 @@ jobs:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_BRANCH: gh-pages
           PUBLISH_DIR: allure-history
-
+          keep_files: true
+      
       - name: Post the link to the report
         if: always()
         uses: Sibz/github-status-action@v1
@@ -103,4 +104,5 @@ jobs:
           context: 'Test report'
           state: 'success'
           sha: ${{ github.event.pull_request.head.sha || github.sha}}
-          target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }}
+          target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }} 
+               
