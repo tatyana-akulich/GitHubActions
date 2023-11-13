@@ -63,7 +63,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
-          name: allure-${{ matrix.browserName }}
+          name: allure-report
           path: |
             target/site
             target/allure-results

@@ -1,5 +1,7 @@
 package by.itechart;
 
+import by.itechart.util.LogConfigurator;
+import by.itechart.util.PropertiesLoader;
 import com.microsoft.playwright.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,10 +9,12 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import by.itechart.util.LogConfigurator;
-import by.itechart.util.PropertiesLoader;
+import org.junit.jupiter.params.provider.Arguments;
 
 import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class BaseTest {
     static Playwright playwright;
@@ -18,6 +22,7 @@ public class BaseTest {
     BrowserContext context;
     Page mainPage;
     public static Logger log;
+
 
     @BeforeAll
     void beforeAll() {
@@ -53,6 +58,7 @@ public class BaseTest {
         context.close();
     }
 
+
     void launchBrowser() {
         playwright = Playwright.create();
         BrowserType browserType = null;
@@ -87,5 +93,12 @@ public class BaseTest {
 
     public static Logger getLog() {
         return log;
+    }
+
+    public static Stream<Arguments> browser() {
+        return Stream.of(
+                arguments("chrome"),
+                arguments("firefox")
+        );
     }
 }
