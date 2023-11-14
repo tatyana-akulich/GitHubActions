@@ -33,7 +33,7 @@ public class BaseTest {
         LogConfigurator.configureLogs();
         log = LogManager.getLogger();
         AllureLifecycle lifecycle = Allure.getLifecycle();
-        lifecycle.updateTestCase(testResult -> testResult.setName(PropertiesLoader.getBrowserName()));
+        lifecycle.updateTestCase(executable -> executable.setDescription("Test on browser - " + PropertiesLoader.getBrowserName()));
         launchBrowser();
     }
 

@@ -68,4 +68,61 @@ jobs:
             target/site
             target/allure-results
             if-no-files-found: ignore
-               
+            
+
+  deploy:
+    name: 'Deploy Allure report'
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright/java:v1.39.0-jammy
+    needs: playwright
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          name: allure-report
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Get Allure history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+           ref: gh-pages
+           path: gh-pages
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: target/allure-results
+          gh_pages: gh-pages
+          allure_report: target/site/allure-maven-plugin
+          allure_history: allure-history
+          keep_reports: 10
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
+          keep_files: true
+
+      - name: Post the link to the report
+        if: always()
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{secrets.GITHUB_TOKEN}}
+          context: 'Test report'
+          state: 'success'
+          sha: ${{ github.event.pull_request.head.sha || github.sha}}
+          target_url: https://tatyana-akulich.github.io/GitHubActions/${{ github.run_number }}
+
+
