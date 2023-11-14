@@ -28,7 +28,7 @@ jobs:
         run: mvn -B install -D skipTests --no-transfer-progress
 
       - name: Run tests
-        run: HOME=/root mvn test
+        run: HOME=/root mvn -DbrowserName=${{ matrix.browserName }} test
 
       - name: Generate allure report
         if: always()
