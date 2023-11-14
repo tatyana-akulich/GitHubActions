@@ -7,6 +7,8 @@ import by.itechart.util.TestResultLoggerExtension;
 import com.microsoft.playwright.Download;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.LoadState;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,6 +39,8 @@ public class DiscountTest extends BaseTest {
     @Test
     @ExtendWith(TestResultLoggerExtension.class)
     public void testInstallSteamWithDiscount() {
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(PropertiesLoader.getBrowserName() + this.getClass().getSimpleName()));
         log.info("Start DiscountTest");
         homePage = new HomePage(mainPage);
         contentPage = new HomeContentPage(mainPage);
