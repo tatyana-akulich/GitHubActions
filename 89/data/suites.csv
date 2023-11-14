@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Nov 14 16:19:01 GMT 2023","Tue Nov 14 16:19:16 GMT 2023","14150","","by.itechart.DiscountTest","","by.itechart.DiscountTest","testInstallSteamWithDiscount","nullDiscountTest",""
