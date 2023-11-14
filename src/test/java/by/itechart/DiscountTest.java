@@ -40,7 +40,8 @@ public class DiscountTest extends BaseTest {
     @ExtendWith(TestResultLoggerExtension.class)
     public void testInstallSteamWithDiscount() {
         AllureLifecycle lifecycle = Allure.getLifecycle();
-        lifecycle.updateTestCase(testResult -> testResult.setName(PropertiesLoader.getBrowserName() + this.getClass().getSimpleName()));
+        lifecycle.updateTestCase(testResult -> testResult.setName(System.getProperty("browserName") + this.getClass().getSimpleName()));
+        log.info("Browser - {}", System.getProperty("browserName"));
         log.info("Start DiscountTest");
         homePage = new HomePage(mainPage);
         contentPage = new HomeContentPage(mainPage);
