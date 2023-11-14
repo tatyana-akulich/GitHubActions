@@ -3,6 +3,8 @@ package by.itechart;
 import by.itechart.util.LogConfigurator;
 import by.itechart.util.PropertiesLoader;
 import com.microsoft.playwright.*;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
@@ -30,6 +32,8 @@ public class BaseTest {
         PropertiesLoader.loadProperties(testName);
         LogConfigurator.configureLogs();
         log = LogManager.getLogger();
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(PropertiesLoader.getBrowserName()));
         launchBrowser();
     }
 
