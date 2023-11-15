@@ -17,7 +17,7 @@ public class HomePage extends BasePage {
     }
 
     public HomePage open() {
-        log.info("Open home .page");
+        log.info("Open homepage");
         page.navigate("https://store.steampowered.com/");
         return this;
     }
