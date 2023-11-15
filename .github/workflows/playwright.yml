@@ -23,12 +23,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-
       - name: Build & Install
         run: mvn -B install -D skipTests --no-transfer-progress
-
-      - name: Install Playwright
-        run: mvn exec:java -e -D exec.mainClass=com.microsoft.playwright.CLI -D exec.args="install --with-deps"
 
       - name: Run tests
         run: HOME=/root mvn -DbrowserName=${{ matrix.browserName }} test
