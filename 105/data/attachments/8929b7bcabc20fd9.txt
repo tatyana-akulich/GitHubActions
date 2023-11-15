@@ -1,0 +1,17 @@
+2023-11-15 12:34:36,818 [INFO ] Browser - webkit 
+2023-11-15 12:34:36,823 [INFO ] Start DiscountTest 
+2023-11-15 12:34:36,833 [INFO ] Open homepage 
+2023-11-15 12:34:38,476 [INFO ] Hover on Categories 
+2023-11-15 12:34:38,694 [INFO ] Click on necessary category and wait till content part load 
+2023-11-15 12:34:38,694 [INFO ] Open category Action 
+2023-11-15 12:34:40,081 [INFO ] Page url is https://store.steampowered.com/category/action/?snr=1_4_4__12 
+2023-11-15 12:34:42,506 [WARN ] Wait till block with steams in All Items is loaded: amount of steams is positive 
+2023-11-15 12:34:42,944 [INFO ] Page url is https://store.steampowered.com/category/action/?flavor=contenthub_all 
+2023-11-15 12:34:43,343 [WARN ] Wait till block with steams in New & Trending is loaded: amount of steams is positive and steams diverse from the ones in All items 
+2023-11-15 12:34:44,153 [INFO ] Page url is https://store.steampowered.com/category/action/?flavor=contenthub_newandtrending 
+2023-11-15 12:34:44,165 [INFO ] Case when there are discounts on the page 
+2023-11-15 12:34:44,166 [INFO ] Get max discount in New & Trending 
+2023-11-15 12:34:44,181 [WARN ] Wait for steam details page to open 
+2023-11-15 12:34:44,183 [INFO ] Open first steam with maximum discount - -25% 
+2023-11-15 12:35:14,203 [ERROR] File for input stream was not found 
+2023-11-15 12:35:14,204 [ERROR] File for input stream was not found 
