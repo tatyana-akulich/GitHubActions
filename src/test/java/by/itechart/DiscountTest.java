@@ -39,7 +39,8 @@ public class DiscountTest extends BaseTest {
     @Test
     @ExtendWith(TestResultLoggerExtension.class)
     public void testInstallSteamWithDiscount() {
-
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        configAllure(lifecycle);
         log.info("Start DiscountTest");
         homePage = new HomePage(mainPage);
         contentPage = new HomeContentPage(mainPage);
