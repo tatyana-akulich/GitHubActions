@@ -17,6 +17,8 @@ downloads/
 steamlogs/
 logs/
 allure-results/
+trace.zip
+*.png
 
 ### Eclipse ###
 .apt_generated

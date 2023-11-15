@@ -3,6 +3,8 @@ package by.itechart;
 import by.itechart.util.LogConfigurator;
 import by.itechart.util.PropertiesLoader;
 import com.microsoft.playwright.*;
+import io.qameta.allure.Allure;
+import io.qameta.allure.AllureLifecycle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.AfterAll;
@@ -28,6 +30,7 @@ public class BaseTest {
         LogConfigurator.configureLogs();
         log = LogManager.getLogger();
         launchBrowser();
+        configAllure();
     }
 
     @AfterAll
@@ -90,5 +93,12 @@ public class BaseTest {
 
     public static Logger getLog() {
         return log;
+    }
+
+    public void configAllure(){
+        AllureLifecycle lifecycle = Allure.getLifecycle();
+        lifecycle.updateTestCase(testResult -> testResult.setName(browserType.name() + this.getClass().getSimpleName()));
+        lifecycle.updateTestCase(testResult -> testResult.setHistoryId(testResult.getHistoryId() + browserType.name()));
+        log.info("Browser - {}", browserType.name());
     }
 }
